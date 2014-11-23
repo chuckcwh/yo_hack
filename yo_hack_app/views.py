@@ -1,0 +1,97 @@
+import json
+from django.contrib.auth import authenticate, login
+from django.core import serializers
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+# Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+import requests
+from yo_hack.settings import YO_API
+from yo_hack_app.forms import ProfileForm, ActionForm
+from yo_hack_app.models import Family, Action, Profile
+
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def profile(request):
+    return render(request, 'profile.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password1"]
+            form.save()
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("index")
+    else:
+        form = ProfileForm()
+
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
+
+
+def dashboard(request):
+    familys = Family.objects.filter(me=request.user)
+    send_actions = Action.objects.filter(sender=request.user)
+    receive_actions = Action.objects.filter(receiver=request.user)
+
+    if request.method == 'POST':
+        action_form = ActionForm(request.POST, instance=request.user)
+        if action_form.is_valid():
+            action_form.save()
+    else:
+        action_form = ActionForm(profile=request.user)
+
+    return render(request, 'dashboard.html', {
+        'action_form': action_form,
+        'familys': familys,
+        'send_actions': send_actions,
+        'receive_actions': receive_actions,
+    })
+
+@csrf_exempt
+def hello(request):
+    receiver = "BRYANYYEN"
+    data = json.loads(request.body)
+    action= Action.objects.create(
+        text=data['text'],
+        sender=request.user,
+        action=0,
+    )
+    action.receiver.add(Profile.objects.get(username=receiver))
+    # requests.post(
+    #     YO_API,
+    #     data={'api_token': request.user.api_token, 'username': receiver, 'link': ''})
+
+    # for i in action.receiver
+    #
+    # returnData = {
+    #     'sender': action.sender,
+    #     'text': action.text,
+    #     'receiver': []
+    # }
+
+    return HttpResponse(
+                serializers.serialize('json', [action], indent=2,
+                                      use_natural_foreign_keys=True,
+                                      use_natural_primary_keys=True),
+                content_type='application.json'
+    )
+
+@csrf_exempt
+def help(request):
+    pass
+
+@csrf_exempt
+def location(request):
+    pass

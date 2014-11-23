@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    login
+{% endblock %}
+
+{% block head_ext %}
+{% endblock%}
+
+{% block body_ext %}
+    <div class="container">
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Log in">
+        </form>
+
+        <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+    </div>
+
+{% endblock %}

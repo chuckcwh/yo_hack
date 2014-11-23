@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    YoMaMa DashBoard
+{% endblock %}
+
+{% block head_ext %}
+
+{% endblock %}
+
+{% block body_ext %}
+    <h3>Member</h3>
+
+
+    <h3>Input button</h3>
+    <input type="text" placeholder="hello text" id="hello_text">
+    <div id="hello">Hello</div>
+    <div id="help">Help</div>
+    <div id="location">Location</div>
+
+    <h3>History</h3>
+    {{ action_form }}<br>
+    {{ familys }}<br>
+    {{ send_actions }}<br>
+    {{ receive_actions }}<br>
+{% endblock %}
