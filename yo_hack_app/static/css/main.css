@@ -1,4 +1,4 @@
-html, body, #map-canvas, #mobile_map { height: 100%; margin: 0; padding: 0;}
+html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; padding: 0;}
 
 .emergency_title {
     width: 100%;
@@ -9,11 +9,4 @@ html, body, #map-canvas, #mobile_map { height: 100%; margin: 0; padding: 0;}
     text-align: center;
     font-family: 'Oxygen', sans-serif;
     padding-top: 8px;
-}
-
-@media (max-width:480px) { /* change depending on the mobiles you're targeting */
-    input, select, .emergency_title, #mobile_map { /* add further tags here according to your needs */
-        height:300px;
-        width:300px
-    }
 }
