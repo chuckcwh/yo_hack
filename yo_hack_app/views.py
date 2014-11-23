@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 import requests
 from yo_hack.settings import YO_API
-from yo_hack_app.forms import ProfileForm, ActionForm
+from yo_hack_app.forms import ProfileForm, ActionForm, CreateWordForm
 from yo_hack_app.models import Family, Action, Profile
 
 
@@ -42,22 +42,36 @@ def register(request):
 
 
 def dashboard(request):
+    wordForm = CreateWordForm(initial={
+        'word1': request.user.word1,
+        'word2': request.user.word2})
+
     familys = Family.objects.filter(me=request.user)
+
+    action_collection = []
+    for family in familys:
+        received_hellos = Action.objects.filter(sender=family, action=0)
+        received_helps = Action.objects.filter(sender=family, action=1)
+        received_locations = Action.objects.filter(sender=family, action=2)
+        action_collection.append([received_hellos, received_helps, received_locations])
+    # HELLO = 0
+    # HELP = 1
+    # LOCATION = 2
     send_actions = Action.objects.filter(sender=request.user)
     receive_actions = Action.objects.filter(receiver=request.user)
 
-    if request.method == 'POST':
-        action_form = ActionForm(request.POST, instance=request.user)
-        if action_form.is_valid():
-            action_form.save()
-    else:
-        action_form = ActionForm(profile=request.user)
+    # if request.method == 'POST':
+    #     action_form = ActionForm(request.POST, instance=request.user)
+    #     if action_form.is_valid():
+    #         action_form.save()
+    # else:
+    #     action_form = ActionForm(profile=request.user)
 
     return render(request, 'dashboard.html', {
-        'action_form': action_form,
+        'wordForm': wordForm,
+        # 'action_form': action_form,
         'familys': familys,
-        'send_actions': send_actions,
-        'receive_actions': receive_actions,
+        'action_colletion': action_collection
     })
 
 @csrf_exempt
