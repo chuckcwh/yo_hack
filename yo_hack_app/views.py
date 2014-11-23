@@ -83,44 +83,60 @@ def hello(request):
 
 @csrf_exempt
 def emergency(request):
-    receiver = "BRYANYYEN"
+    # receiver = "BRYANYYEN"
     data = json.loads(request.body)
-    latlon = str(data['userLat'])+";"+str(data['userLon'])
-    print data['text']
+    # latlon = str(data['userLat'])+";"+str(data['userLon'])
+    users = data['name_list']
     action= Action.objects.create(
-        text=str(data['text']),
-        sender=request.user,
-        action=1,
-        latitude = data['userLat'],
-        longitude = data['userLon']
-    )
+            sender=request.user,
+            action=1,
+            latitude = data['userLat'],
+            longitude = data['userLon']
+        )
+    for user in users:
+        action.receiver.add(Profile.objects.get(username=user))
+        response = requests.post(
+            YO_API,
+            data={'api_token': request.user.api_token, 'username': user, 'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk) })
 
-    action.receiver.add(Profile.objects.get(username=receiver))
-
-    response = requests.post(
-        YO_API,
-        data={'api_token': request.user.api_token, 'username': receiver, 'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk) })
-
-
-    collection = {'response': response.status_code,
-                  'api': YO_API,
-                  'token': request.user.api_token,
-                  'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk),
-                  'receiver': receiver}
-    return HttpResponse(
-                json.dumps(collection),
-                content_type='application.json'
-    )
+        # collection = {'response': response.status_code,
+        #               'api': YO_API,
+        #               'token': request.user.api_token,
+        #               'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk),
+        #               'receiver': receiver}
     # return HttpResponse(
-    #             serializers.serialize('json', [action], indent=2,
-    #                                   use_natural_foreign_keys=True,
-    #                                   use_natural_primary_keys=True),
+    #             json.dumps(collection),
     #             content_type='application.json'
     # )
+    return HttpResponse(
+                serializers.serialize('json', [action], indent=2,
+                                      use_natural_foreign_keys=True,
+                                      use_natural_primary_keys=True),
+                content_type='application.json'
+    )
 
 @csrf_exempt
 def im_lost(request):
-    pass
+    data = json.loads(request.body)
+    users = data['name_list']
+    action= Action.objects.create(
+            sender=request.user,
+            action=2,
+            latitude = data['userLat'],
+            longitude = data['userLon']
+        )
+    for user in users:
+        action.receiver.add(Profile.objects.get(username=user))
+        response = requests.post(
+            YO_API,
+            data={'api_token': request.user.api_token, 'username': user, 'link': request.META['HTTP_ORIGIN'] + '/lost/'+str(action.pk) })
+
+    return HttpResponse(
+                serializers.serialize('json', [action], indent=2,
+                                      use_natural_foreign_keys=True,
+                                      use_natural_primary_keys=True),
+                content_type='application.json'
+    )
 
 
 
@@ -143,9 +159,15 @@ def emergency_url(request, emergency_id):
     })
 
 
+def lost_url(request, lost_id):
+    lost = Action.objects.get(pk=lost_id)
+    return render_to_response('lost_url.html', {
+        'lost': lost
+    })
+
+
 def action(request):
     familys = Family.objects.filter(me=request.user)
     return render(request, 'action.html', {
-    'familys': familys
+        'familys': familys
     })
-    pass

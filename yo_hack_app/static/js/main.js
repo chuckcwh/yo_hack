@@ -11,6 +11,8 @@ $(document).ready(function() {
         }
     }
     function ajax_call(endPoint, data){
+        data['name_list']=name_list;
+        console.log(data);
         $.ajax({
             url: endPoint,
             type: 'POST',
@@ -25,7 +27,7 @@ $(document).ready(function() {
 
     function emergency_callback(userLat, userLon) {
         data = {
-            'text': $('#hello_text').val(),
+//            'text': $('#hello_text').val(),
             'userLat': userLat,
             'userLon': userLon
         };
@@ -34,7 +36,7 @@ $(document).ready(function() {
 
     function lost_callback(userLat, userLon) {
         data = {
-            'text': $('#hello_text').val(),
+//            'text': $('#hello_text').val(),
             'userLat': userLat,
             'userLon': userLon
         };

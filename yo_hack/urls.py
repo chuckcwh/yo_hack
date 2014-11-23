@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 
     #rendering URL
     url(r'^emergency/(?P<emergency_id>[0-9]+)/$', 'yo_hack_app.views.emergency_url', name='emergency_url'),
+    url(r'^lost/(?P<lost_id>[0-9]+)/$', 'yo_hack_app.views.lost_url', name='lost_url'),
 
     url(r'^action/$', 'yo_hack_app.views.action', name='action'),
     #User account
