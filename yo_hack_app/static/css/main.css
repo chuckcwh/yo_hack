@@ -253,3 +253,7 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
 .hack-map {
     padding: 0;
 }
+
+#id_username, #id_password, #id_password1, #id_password2{
+    color: black;
+}
