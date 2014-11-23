@@ -70,7 +70,7 @@ def hello(request):
         action=0,
     )
     action.receiver.add(Profile.objects.get(username=receiver))
-    requests.post(
+    response = requests.post(
         YO_API,
         data={'api_token': request.user.api_token, 'username': receiver, 'link': ''})
 
@@ -97,16 +97,22 @@ def emergency(request):
 
     action.receiver.add(Profile.objects.get(username=receiver))
 
-    requests.post(
+    response = requests.post(
         YO_API,
         data={'api_token': request.user.api_token, 'username': receiver, 'link': '/emergency/'+str(action.pk) })
 
+
+    collection = {'response': response.status_code }
     return HttpResponse(
-                serializers.serialize('json', [action], indent=2,
-                                      use_natural_foreign_keys=True,
-                                      use_natural_primary_keys=True),
+                json.dumps(collection),
                 content_type='application.json'
     )
+    # return HttpResponse(
+    #             serializers.serialize('json', [action], indent=2,
+    #                                   use_natural_foreign_keys=True,
+    #                                   use_natural_primary_keys=True),
+    #             content_type='application.json'
+    # )
 
 @csrf_exempt
 def im_lost(request):
