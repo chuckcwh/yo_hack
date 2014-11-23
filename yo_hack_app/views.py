@@ -171,3 +171,10 @@ def action(request):
     return render(request, 'action.html', {
         'familys': familys
     })
+
+
+def hello_url(request, hello_id):
+    hello = Action.objects.get(pk=hello_id)
+    return render_to_response('hello_url.html', {
+        'hello': hello
+    })

@@ -1,0 +1,19 @@
+{% extends 'base_url.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Hello
+{% endblock %}
+
+{% block head_ext %}
+
+{% endblock %}
+
+{% block body_ext %}
+    <div id="mobile_map">
+        <div class="hello_title">
+            <h1>Yo</h1>
+        </div>
+        <div id="hello_body">{{ hello.text }}</div>
+    </div>
+{% endblock %}
