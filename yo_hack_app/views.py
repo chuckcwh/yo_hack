@@ -62,17 +62,18 @@ def dashboard(request):
 
 @csrf_exempt
 def hello(request):
-    receiver = "BRYANYYEN"
     data = json.loads(request.body)
+    users = data['name_list']
     action= Action.objects.create(
         text=data['text'],
         sender=request.user,
         action=0,
     )
-    action.receiver.add(Profile.objects.get(username=receiver))
-    response = requests.post(
-        YO_API,
-        data={'api_token': request.user.api_token, 'username': receiver, 'link': ''})
+    for user in users:
+        action.receiver.add(Profile.objects.get(username=user))
+        response = requests.post(
+            YO_API,
+            data={'api_token': request.user.api_token, 'username': user, 'link': request.META['HTTP_ORIGIN'] + '/hello/'+str(action.pk) })
 
     return HttpResponse(
                 serializers.serialize('json', [action], indent=2,
@@ -83,7 +84,6 @@ def hello(request):
 
 @csrf_exempt
 def emergency(request):
-    # receiver = "BRYANYYEN"
     data = json.loads(request.body)
     # latlon = str(data['userLat'])+";"+str(data['userLon'])
     users = data['name_list']
