@@ -99,13 +99,13 @@ def emergency(request):
 
     response = requests.post(
         YO_API,
-        data={'api_token': request.user.api_token, 'username': receiver, 'link': '/emergency/'+str(action.pk) })
+        data={'api_token': request.user.api_token, 'username': receiver, 'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk) })
 
 
     collection = {'response': response.status_code,
                   'api': YO_API,
                   'token': request.user.api_token,
-                  'link': '/emergency/'+str(action.pk),
+                  'link': request.META['HTTP_ORIGIN'] + '/emergency/'+str(action.pk),
                   'receiver': receiver}
     return HttpResponse(
                 json.dumps(collection),
