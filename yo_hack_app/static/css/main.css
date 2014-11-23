@@ -76,9 +76,9 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
   width: 100%;
 }
 
-.usernames {
+.title_usernames {
     overflow-y: auto;
-    height: 80%;
+    height: 75%;
     width: 100% !important;
     position: fixed;
 }
