@@ -10,6 +10,17 @@
 {% endblock %}
 
 {% block body_ext %}
+<div id="yomama">
+    <div class="col-xs-2 icon_reset">
+        <img id="yo_icon" height=120 src="{% static 'img/yo-icon.png' %}">
+    </div>
+    <div class="col-xs-8">
+        <div class="yomama_text">Yomama</div>
+    </div>
+    <div class="col-xs-2 icon_reset">
+        <div id="action_dashboard">Dashboard</div>
+    </div>
+</div>
     <div>
         <div class="usernames">
             {% for family in familys %}

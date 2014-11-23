@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -40,7 +41,7 @@ def register(request):
         'form': form,
     })
 
-
+@login_required
 def dashboard(request):
     familys = Family.objects.filter(me=request.user)
     send_actions = Action.objects.filter(sender=request.user)

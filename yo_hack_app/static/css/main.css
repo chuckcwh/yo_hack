@@ -102,3 +102,40 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
     background-color: #9B59B6;
     font-size: 36px;
 }
+
+#yomama {
+    height: 120px;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    background-color: #9B59B6;
+}
+#yo_icon {
+    float: left;
+}
+.icon_reset {
+    padding: 0;
+}
+.yomama_text {
+    font-size: 48px;
+    padding-top: 23px;
+}
+#go_action, #go_dashboard, #go_login, #go_register {
+    padding-top: 25px;
+    color: white;
+}
+#go_login{
+    background-color: #F1C40F;
+}
+#go_register {
+    background-color: #2980B9;
+}
+#home-body {
+    padding-top: 100px;
+}
+#action_dashboard {
+    font-size: 32px;
+    padding-top: 35px;
+    background-color: #9B59B6;
+}

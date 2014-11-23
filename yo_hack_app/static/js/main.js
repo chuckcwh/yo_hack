@@ -85,6 +85,19 @@ $(document).ready(function() {
         $(this).css('background-color', color_list[count]);
     });
 
-
-
+    $('#go_action').on('click', function () {
+        window.location.href = "/action/";
+    });
+    $('#go_dashboard, #action_dashboard').on('click', function () {
+        window.location.href = "/dashboard/";
+    });
+    $('#go_logout').on('click', function () {
+        window.location.href = "/logout/";
+    });
+    $('#go_login').on('click', function () {
+        window.location.href = "/login/";
+    });
+    $('#go_register').on('click', function () {
+        window.location.href = "/register/";
+    });
 });
