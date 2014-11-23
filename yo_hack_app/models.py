@@ -10,7 +10,7 @@ class Profile(AbstractUser):
         default='profile_pictures/default-profile-photo.png')
     api_token = models.CharField(max_length=100, null=True, blank=True)
     word1 = models.CharField(max_length=10, null=True, blank=True, default='dinner')
-    word2 = models.CharField(max_length=10, null=True, blank=True)
+    word2 = models.CharField(max_length=10, null=True, blank=True, default='I love you')
     word3 = models.CharField(max_length=10, null=True, blank=True)
 
     def __unicode__(self):

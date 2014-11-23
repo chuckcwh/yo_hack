@@ -54,7 +54,9 @@ def dashboard(request):
         received_hellos = Action.objects.filter(sender=family, action=0)
         received_helps = Action.objects.filter(sender=family, action=1)
         received_locations = Action.objects.filter(sender=family, action=2)
-        action_collection.append([received_hellos, received_helps, received_locations])
+        action_collection.append({ 'hellos': received_hellos,
+                                   'helps': received_helps,
+                                   'locations':received_locations})
 
     return render(request, 'dashboard.html', {
         'wordForm': wordForm,
@@ -179,3 +181,18 @@ def hello_url(request, hello_id):
     return render_to_response('hello_url.html', {
         'hello': hello
     })
+
+
+def get_action(request):
+    sender = request.GET['sender']
+    action = request.GET['action']
+    actions = Action.objects.filter(
+        sender=Profile.objects.get(username=str(sender)),
+        action=action,
+        receiver=request.user)
+    return HttpResponse(
+                serializers.serialize('json', actions, indent=2,
+                                      use_natural_foreign_keys=True,
+                                      use_natural_primary_keys=True),
+                content_type='application.json'
+    )

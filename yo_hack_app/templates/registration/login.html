@@ -23,7 +23,7 @@
             {% csrf_token %}
             {{ form.as_p }}
 
-            <input class="btn btn-xl" type="submit" value="Log in">
+            <input class="btn btn-xl btn-success" type="submit" value="Log in">
         </form>
 
         <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
