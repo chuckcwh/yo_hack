@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -152,17 +152,16 @@ def im_lost(request):
                 content_type='application.json'
     )
 
+@csrf_exempt
+def save_words(request):
+    data = json.loads(request.body)
+    user = request.user
+    user.word1 = data['word1']
+    user.word2 = data['word2']
+    user.save()
 
+    return JsonResponse({'success':'True'})
 
-#might need this shit later
-# long= request.GET.get('location')
-#     lat = request.META['QUERY_STRING'].split(';')[1]
-#     username = request.GET.get('username')
-#     data = {
-#         'location': long+";"+lat,
-#         'username': username
-#     }
-#     return render(request, 'help.html', data)
 
 
 def emergency_url(request, emergency_id):
