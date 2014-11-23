@@ -9,12 +9,21 @@
 {% endblock%}
 
 {% block body_ext %}
-    <div class="container">
+    <div id="yomama">
+    <div class="col-xs-2 icon_reset">
+        <img id="yo_icon" height=120 src="{% static 'img/yo-icon.png' %}">
+    </div>
+    <div class="col-xs-8">
+        <div class="yomama_text">Yomama</div>
+    </div>
+
+</div>
+    <div class="container login-body">
         <form method="post" action=".">
             {% csrf_token %}
             {{ form.as_p }}
 
-            <input type="submit" value="Log in">
+            <input class="btn btn-xl" type="submit" value="Log in">
         </form>
 
         <p>Not member? <a href="{% url 'register' %}">Register!</a></p>

@@ -10,12 +10,33 @@
 {% endblock %}
 
 {% block body_ext %}
-
-
+<div id="yomama">
+    <div class="col-xs-2 icon_reset">
+        <img id="yo_icon" height=120 src="{% static 'img/yo-icon.png' %}">
+    </div>
+    <div class="col-xs-8">
+        <div class="yomama_text">Yomama</div>
+    </div>
+    <div class="col-xs-2 icon_reset">
+        <div id="dashboard_action">Action</div>
+    </div>
+</div>
+    <div>
+        <div class="col-xs-4 icon_reset dash_word_left">
+            <span id="word1">Word1:</span> {{ wordForm.word1 }}
+        </div>
+        <div class="col-xs-4 icon_reset dash_word_center">
+            <div id="word2">Word2: {{ wordForm.word2 }}</div>
+        </div>
+        <div class="col-xs-4 icon_reset dash_word" id="dash_save">
+            <div>Save</div>
+        </div>
+    </div>
 
     <h3>Dashboard</h3>
-    {{ action_form }}<br>
     {{ familys }}<br>
-    {{ send_actions }}<br>
-    {{ receive_actions }}<br>
+
+    {% for action in action_collection %}
+    <li>{{ action }}</li>
+    {% endfor %}
 {% endblock %}

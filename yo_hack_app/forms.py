@@ -40,7 +40,10 @@ class ActionForm(forms.ModelForm):
         self.fields['action'].choices = self.ACTIONS
 
 class CreateWordForm(forms.Form):
-    word = forms.CharField(max_length=10,
+    word1 = forms.CharField(max_length=10,
+                           widget=forms.TextInput(attrs={'class': 'form-control',
+                                                         'placeholder': 'enter the word'}))
+    word2 = forms.CharField(max_length=10,
                            widget=forms.TextInput(attrs={'class': 'form-control',
                                                          'placeholder': 'enter the word'}))
 # class FamilyForm(forms.ModelForm):

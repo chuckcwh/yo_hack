@@ -85,7 +85,7 @@ $(document).ready(function() {
         $(this).css('background-color', color_list[count]);
     });
 
-    $('#go_action').on('click', function () {
+    $('#go_action, #dashboard_action').on('click', function () {
         window.location.href = "/action/";
     });
     $('#go_dashboard, #action_dashboard').on('click', function () {
@@ -100,4 +100,9 @@ $(document).ready(function() {
     $('#go_register').on('click', function () {
         window.location.href = "/register/";
     });
+
+//    $('#dash_save').on('click', function() {
+//        var word1 =
+//    })
+
 });
