@@ -1,3 +1,7 @@
+body {
+    background-color: #8d43ad;
+}
+
 html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; padding: 0;}
 
 .emergency_title {
@@ -9,4 +13,21 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
     text-align: center;
     font-family: 'Oxygen', sans-serif;
     padding-top: 8px;
+}
+.auth_window {
+    width: 30%;
+    height: 200px;
+}
+#go_dashboard {
+    background-color: green;
+    color: white;
+}
+#go_login {
+    background-color: yellow;
+    color: black;
+    display: inline-block;
+}
+#go_register {
+    background-color: blue;
+    color: white;
 }

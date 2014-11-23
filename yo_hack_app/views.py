@@ -141,3 +141,10 @@ def emergency_url(request, emergency_id):
     return render_to_response('emergency_url.html', {
         'emergency': emergency
     })
+
+
+def action(request):
+    return render_to_response('emergency_url.html', {
+        'emergency': emergency
+    })
+    pass

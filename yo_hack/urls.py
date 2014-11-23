@@ -19,7 +19,8 @@ urlpatterns = patterns('',
 
     #rendering URL
     url(r'^emergency/(?P<emergency_id>[0-9]+)/$', 'yo_hack_app.views.emergency_url', name='emergency_url'),
-    
+
+    url(r'^action/$', 'yo_hack_app.views.action', name='action'),
     #User account
     url(r'^register/$', 'yo_hack_app.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),

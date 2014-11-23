@@ -15,37 +15,35 @@
     {% block head_ext %}{% endblock %}
 </head>
 <body>
-<nav class="navbar transparent navbar-inverse" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'index' %}">YoElder</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a data-toggle="modal" href="{% url 'dashboard' %}">Dashboard</a></li>
-        <li><a href="{% url 'index' %}">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+<div><img width=120 height=100 src="{% static 'img/yo-icon.jpg' %}"></div>
+{#<nav class="navbar transparent" role="navigation">#}
+{#  <div class="container-fluid">#}
+{#    <!-- Brand and toggle get grouped for better mobile display -->#}
+{#    <div class="navbar-header">#}
+{#      <a class="navbar-brand" href="{% url 'index' %}">YoMaMa</a>#}
+{#    </div>#}
+{##}
+{#    <!-- Collect the nav links, forms, and other content for toggling -->#}
+{#    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#      <ul class="nav navbar-nav">#}
+{#        <li><a href="{% url 'index' %}">Home</a></li>#}
+{#        <li><a data-toggle="modal" href="{% url 'dashboard' %}">Dashboard</a></li>#}
+{#        <li><a href="{% url 'index' %}">Home</a></li>#}
+{#      </ul>#}
+{#      <ul class="nav navbar-nav navbar-right">#}
 {#        <li><a href="{% url 'faq' %}">FAQ</a></li>#}
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'profile' %}">Welcome~{{ user.username }}!</a></li>
-        <li><a href="{% url 'profile' %}">Profile</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% if user.is_staff %}
-                <li><a href="/admin">Admin</a></li>
-            {% endif %}
-        {% else %}
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'register' %}">Register</a></li>
-        {% endif %}
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+{#        {% if user.is_authenticated %}#}
+{#        <li><a href="{% url 'profile' %}">Welcome~{{ user.username }}!</a></li>#}
+{#        <li><a href="{% url 'profile' %}">Profile</a></li>#}
+{#        <li><a href="{% url 'logout' %}">Logout</a></li>#}
+{#        {% else %}#}
+{#        <li><a href="{% url 'login' %}">Login</a></li>#}
+{#        <li><a href="{% url 'register' %}">Register</a></li>#}
+{#        {% endif %}#}
+{#      </ul>#}
+{#    </div><!-- /.navbar-collapse -->#}
+{#  </div><!-- /.container-fluid -->#}
+{#</nav>#}
 
 {% block body_ext %}{% endblock %}
 

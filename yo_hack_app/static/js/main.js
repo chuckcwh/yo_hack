@@ -22,6 +22,25 @@ $(document).ready(function() {
             }
         });
     }
+
+    function emergency_callback(userLat, userLon) {
+        data = {
+            'text': $('#hello_text').val(),
+            'userLat': userLat,
+            'userLon': userLon
+        };
+        ajax_call('/emergency/', data);
+    }
+
+    function lost_callback(userLat, userLon) {
+        data = {
+            'text': $('#hello_text').val(),
+            'userLat': userLat,
+            'userLon': userLon
+        };
+        ajax_call('/im-lost/', data);
+    }
+
     $('#hello').on('click', function(){
         data = {
             'text': $('#hello_text').val()
@@ -34,16 +53,11 @@ $(document).ready(function() {
         get_location(emergency_callback);
     });
 
+    $('#lost').on('click', function(){
+        get_location(lost_callback);
+    });
 
 
-    function emergency_callback(userLat, userLon) {
-        data = {
-            'text': $('#hello_text').val(),
-            'userLat': userLat,
-            'userLon': userLon
-        };
-        ajax_call('/emergency/', data);
-    }
 
 
 
