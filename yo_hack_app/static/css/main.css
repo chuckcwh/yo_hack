@@ -102,3 +102,9 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
     background-color: #9B59B6;
     font-size: 36px;
 }
+
+.login-body {
+    padding-top: 150px;
+    text-align: center;
+    color: white;
+}
