@@ -53,8 +53,15 @@ $(document).ready(function() {
         get_location(emergency_callback);
     });
 
-    $('#lost').on('click', function(){
+    $('#lost').on('click', function() {
         get_location(lost_callback);
+    });
+
+    $('.word').on('click', function(){
+        data = {
+            'text': $(this).text()
+        };
+        ajax_call('/hello/', data)
     });
 
 
