@@ -14,9 +14,11 @@ urlpatterns = patterns('',
 
     #ajax
     url(r'^hello/$', 'yo_hack_app.views.hello', name='hello'),
-    url(r'^help/$', 'yo_hack_app.views.help', name='help'),
-    url(r'^location/$', 'yo_hack_app.views.location', name='location'),
+    url(r'^emergency/$', 'yo_hack_app.views.emergency', name='emergency'),
+    url(r'^im-lost/$', 'yo_hack_app.views.im_lost', name='im_lost'),
 
+    #rendering URL
+    url(r'^emergency/(?P<emergency_id>[0-9]+)/$', 'yo_hack_app.views.emergency_url', name='emergency_url'),
     #User account
     url(r'^register/$', 'yo_hack_app.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),

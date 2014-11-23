@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 import requests
 from yo_hack.settings import YO_API
@@ -69,17 +70,9 @@ def hello(request):
         action=0,
     )
     action.receiver.add(Profile.objects.get(username=receiver))
-    # requests.post(
-    #     YO_API,
-    #     data={'api_token': request.user.api_token, 'username': receiver, 'link': ''})
-
-    # for i in action.receiver
-    #
-    # returnData = {
-    #     'sender': action.sender,
-    #     'text': action.text,
-    #     'receiver': []
-    # }
+    requests.post(
+        YO_API,
+        data={'api_token': request.user.api_token, 'username': receiver, 'link': ''})
 
     return HttpResponse(
                 serializers.serialize('json', [action], indent=2,
@@ -89,9 +82,52 @@ def hello(request):
     )
 
 @csrf_exempt
-def help(request):
-    pass
+def emergency(request):
+    receiver = "BRYANYYEN"
+    data = json.loads(request.body)
+    latlon = str(data['userLat'])+";"+str(data['userLon'])
+    print data['text']
+    action= Action.objects.create(
+        text=str(data['text']),
+        sender=request.user,
+        action=1,
+        latitude = data['userLat'],
+        longitude = data['userLon']
+    )
+
+    action.receiver.add(Profile.objects.get(username=receiver))
+
+    requests.post(
+        YO_API,
+        data={'api_token': request.user.api_token, 'username': receiver, 'link': '/emergency/'+str(action.pk) })
+
+    return HttpResponse(
+                serializers.serialize('json', [action], indent=2,
+                                      use_natural_foreign_keys=True,
+                                      use_natural_primary_keys=True),
+                content_type='application.json'
+    )
 
 @csrf_exempt
-def location(request):
+def im_lost(request):
     pass
+
+
+
+#might need this shit later
+# long= request.GET.get('location')
+#     lat = request.META['QUERY_STRING'].split(';')[1]
+#     username = request.GET.get('username')
+#     data = {
+#         'location': long+";"+lat,
+#         'username': username
+#     }
+#     return render(request, 'help.html', data)
+
+
+def emergency_url(request, emergency_id):
+    emergency = Action.objects.get(pk=emergency_id)
+    # data={}
+    return render_to_response('emergency_url.html', {
+        'emergency': emergency
+    })
