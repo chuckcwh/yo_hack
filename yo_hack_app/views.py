@@ -102,7 +102,11 @@ def emergency(request):
         data={'api_token': request.user.api_token, 'username': receiver, 'link': '/emergency/'+str(action.pk) })
 
 
-    collection = {'response': response.status_code }
+    collection = {'response': response.status_code,
+                  'api': YO_API,
+                  'token': request.user.api_token,
+                  'link': '/emergency/'+str(action.pk),
+                  'receiver': receiver}
     return HttpResponse(
                 json.dumps(collection),
                 content_type='application.json'
