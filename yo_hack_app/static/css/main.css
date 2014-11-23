@@ -31,3 +31,42 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
     background-color: blue;
     color: white;
 }
+
+.name_click, .action_click {
+    height: 89px;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 20px;
+}
+#word_left {
+    background-color: #2ECC71;
+}
+#word_right {
+    background-color: #16A085;
+}
+.hack-fix {
+    padding: 0;
+}
+
+#lost {
+    background-color: #F1C40F;
+}
+#emergency {
+    background-color: #e74c3c;
+}
+#bottomDisclaimer {
+  z-index:100;
+  position:fixed;
+  bottom:0px;
+  width: 100%;
+}
+
+.usernames {
+    overflow-y: auto;
+    height: 80%;
+    width: 100% !important;
+    position: fixed;
+}

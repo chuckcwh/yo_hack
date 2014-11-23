@@ -144,7 +144,8 @@ def emergency_url(request, emergency_id):
 
 
 def action(request):
-    return render_to_response('emergency_url.html', {
-        'emergency': emergency
+    familys = Family.objects.filter(me=request.user)
+    return render(request, 'action.html', {
+    'familys': familys
     })
     pass

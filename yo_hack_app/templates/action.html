@@ -11,17 +11,26 @@
 
 {% block body_ext %}
     <div>
-        <h1>Member</h1>
-        <h1>Action</h1>
+        <div class="usernames">
+            {% for family in familys %}
+                <div class="name_click"><span>{{ family }}</span></div>
+            {% endfor %}
+        </div>
+            <div id="bottomDisclaimer">
+                <div class="col-md-6 col-xs-6 hack-fix">
+                    <div class="action_click" id="word_left">{{ user.word1 }}</div>
+                </div>
+                <div  class="col-md-6 col-xs-6 hack-fix">
+                    <div class="action_click" id="word_right">{{ user.word2 }}</div>
+                </div>
+                <div  class="col-md-6 col-xs-6 hack-fix">
+                    <div class="action_click" id="lost">I'm Lost</div>
+                </div>
+                <div  class="col-md-6 col-xs-6 hack-fix">
+                    <div class="action_click" id="emergency">Emergency</div>
+                </div>
+            </div>
 
-        <h3>Input button</h3>
-        <input type="text" placeholder="hello text" id="hello_text">
-        <div class="word">{{ user.word1 }}</div>
-        <div class="word">{{ user.word2 }}</div>
-        <div class="word">{{ user.word3 }}</div>
-        <div id="hello">Hello</div>
-        <div id="emergency">emergency</div>
-        <div id="location">Location</div>
     </div>
 
 {% endblock %}

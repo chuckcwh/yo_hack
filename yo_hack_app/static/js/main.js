@@ -64,7 +64,24 @@ $(document).ready(function() {
         ajax_call('/hello/', data)
     });
 
+    var name_list = [];
+    var color_list = ['#1ABC9C', '', '#3498DB', '#34495E', '', '#8E44AD', '#9B59B6'];
+    $('.name_click').on('click', function(){
+        name_tag = $(this).text();
+        name_list.push(name_tag);
+        console.log(name_list);
+    });
 
+    var count = -1;
+    $('.name_click').each(function() {
+        if(count < color_list.length){
+            count ++;
+        }
+        else {
+            count = 0;
+        }
+        $(this).css('background-color', color_list[count]);
+    });
 
 
 

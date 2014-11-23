@@ -22,7 +22,7 @@ class Family(models.Model):
     you = models.ForeignKey(Profile, related_name="families_you")
 
     def __unicode__(self):
-        return u"{} {}".format(self.me, self.you)
+        return u"{}".format(self.you)
 
 
 class Action(models.Model):
