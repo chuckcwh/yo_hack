@@ -27,11 +27,11 @@
 <div class="row">
     <div id="home-body">
     {% if user.is_authenticated %}
-        <div class="hello_title" id="go_action">Action</div>
-        <div class="lost_title" id="go_dashboard">Dashboard</div>
+        <div class="hello_title btn" id="go_action">Action</div>
+        <div class="lost_title btn" id="go_dashboard">Dashboard</div>
     {% else %}
-        <div class="lost_title" id="go_login">Login</div>
-        <div class="emergency_title" id="go_register">Register</div>
+        <div class="lost_title btn" id="go_login">Login</div>
+        <div class="emergency_title btn" id="go_register">Register</div>
     {% endif %}
     </div>
 </div>

@@ -24,21 +24,21 @@
 <div>
     <div class="usernames">
         {% for family in familys %}
-            <div class="name_click"><span>{{ family }}</span></div>
+            <div class="name_click btn"><span>{{ family }}</span></div>
         {% endfor %}
     </div>
     <div id="bottomDisclaimer">
         <div class="col-md-6 col-xs-6 hack-fix">
-            <div class="action_click word" id="word_left">{{ user.word1 }}</div>
+            <div class="action_click word btn" id="word_left">{{ user.word1 }}</div>
         </div>
         <div  class="col-md-6 col-xs-6 hack-fix">
-            <div class="action_click word" id="word_right">{{ user.word2 }}</div>
+            <div class="action_click word btn" id="word_right">{{ user.word2 }}</div>
         </div>
         <div  class="col-md-6 col-xs-6 hack-fix">
-            <div class="action_click" id="lost">I'm Lost</div>
+            <div class="action_click btn" id="lost">I'm Lost</div>
         </div>
         <div  class="col-md-6 col-xs-6 hack-fix">
-            <div class="action_click" id="emergency">Emergency</div>
+            <div class="action_click btn" id="emergency">Emergency</div>
         </div>
     </div>
 </div>
