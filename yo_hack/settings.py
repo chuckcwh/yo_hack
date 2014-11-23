@@ -95,6 +95,7 @@ LOGIN_URL = 'login'
 # Yo api end point url
 YO_API = "https://api.justyo.co/yo/"
 
+
 try:
     from local_settings import *
 except ImportError:
