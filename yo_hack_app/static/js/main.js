@@ -34,6 +34,12 @@ $(document).ready(function() {
         get_location(emergency_callback);
     });
 
+    $('.word').on('click', function(){
+        data = {
+            'text': $(this).text()
+        };
+        ajax_call('/hello/', data)
+    });
 
 
     function emergency_callback(userLat, userLon) {
