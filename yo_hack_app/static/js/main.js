@@ -100,7 +100,9 @@ $(document).ready(function() {
     $('#go_register').on('click', function () {
         window.location.href = "/register/";
     });
-
+    $('.mama_text').on('click', function () {
+        window.location.href = "/instruction/";
+    });
 
 
 });

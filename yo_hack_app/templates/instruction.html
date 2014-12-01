@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block head_ext %}
+
+{% endblock %}
+
+{% block body_ext %}
+<div id="yomama">
+    <div class="col-xs-2 icon_reset">
+        <img id="yo_icon" height=120 src="{% static 'img/yo-icon.png' %}">
+    </div>
+    <div class="col-xs-8">
+        <div class="yomama_text">Back</div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="home-body">
+
+    </div>
+</div>
+
+{% endblock %}

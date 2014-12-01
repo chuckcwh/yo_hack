@@ -133,6 +133,20 @@ html, body, #map-canvas, #mobile_map { height: 100%; width: auto; margin: 0; pad
 #home-body {
     padding-top: 100px;
 }
+.mama {
+    text-align: center;
+}
+.mama_text {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    text-decoration: none;
+}
+.mama_text:hover {
+    color: white;
+    text-decoration: none;
+}
 #action_dashboard {
     font-size: 32px;
     padding-top: 35px;

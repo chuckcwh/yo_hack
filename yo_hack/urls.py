@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'yo_hack_app.views.index', name='index'),
     url(r'^dashboard/$', 'yo_hack_app.views.dashboard', name='dashboard'),
     url(r'^profile/$', 'yo_hack_app.views.profile', name='profile'),
-
+    # url(r'^instruction/$', 'yo_hack_app.views.instruction', name='instruction'),
 
     url(r'^admin/', include(admin.site.urls)),
 

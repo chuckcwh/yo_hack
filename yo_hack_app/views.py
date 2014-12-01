@@ -17,6 +17,8 @@ from yo_hack_app.models import Family, Action, Profile
 def index(request):
     return render(request, 'index.html')
 
+def instruction(request):
+    return render(request, 'instruction.html')
 
 def profile(request):
     return render(request, 'profile.html')

@@ -3,6 +3,6 @@
 db_name: "yo_hack"
 db_user: "yo_hack"
 db_password: "yo_hack"
-nginx_server_name: ec2-54-148-46-68.us-west-2.compute.amazonaws.com
+nginx_server_name: ec2-54-149-64-240.us-west-2.compute.amazonaws.com
 django_settings_file: "yo_hack.settings"
 proxy_ip: 127.0.0.1:8001
